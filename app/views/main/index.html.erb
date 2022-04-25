@@ -1,0 +1,30 @@
+<div class="maindiv">
+<button name="button" value="OK" type="button" onclick="routeruser()">User Login</button> 
+
+
+
+<button name="button" value="OK" type="button" onclick="routeadmin()" >Admin Login</button> 
+</div>
+
+<style>
+.maindiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+.maindiv button{
+    padding: 10px;
+    margin: 10px;
+}
+</style>
+
+<script>
+function routeruser(){
+    window.location.pathname = "/user_login_form"
+}
+function routeadmin(){
+    window.location.pathname = "/admin_login_form"
+}
+</script>
