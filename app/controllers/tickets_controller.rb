@@ -21,7 +21,10 @@ class TrainsController < ApplicationController
 
   # POST /Trains or /Trains.json
   def create
-    @Train = Train.new(Train_params)
+    byebug
+    # @user = User.first
+    @Train = Train.new
+    @Train = @user.Train.new(Train_params)
 
     respond_to do |format|
       if @Train.save
