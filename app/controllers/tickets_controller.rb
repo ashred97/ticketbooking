@@ -1,70 +1,72 @@
-class TicketsController < ApplicationController
-  before_action :set_ticket, only: %i[ show edit update destroy ]
+class TrainsController < ApplicationController
+  before_action :set_Train, only: %i[ show edit update destroy ]
 
-  # GET /tickets or /tickets.json
+  # GET /Trains or /Trains.json
   def index
-    @tickets = Ticket.all
+    @Trains = Train.all
   end
 
-  # GET /tickets/1 or /tickets/1.json
+  # GET /Trains/1 or /Trains/1.json
   def show
   end
 
-  # GET /tickets/new
+  # GET /Trains/new
   def new
-    @ticket = Ticket.new
+    @Train = Train.new
   end
 
-  # GET /tickets/1/edit
+  # GET /Trains/1/edit
   def edit
   end
 
-  # POST /tickets or /tickets.json
+  # POST /Trains or /Trains.json
   def create
-    @ticket = Ticket.new(ticket_params)
+    @Train = Train.new(Train_params)
 
     respond_to do |format|
-      if @ticket.save
-        format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully created." }
-        format.json { render :show, status: :created, location: @ticket }
+      if @Train.save
+        flash[:alert] = "train ticket save"
+
+        format.html { redirect_to Train_url(@Train), notice: "Train was successfully created." }
+        format.json { render :show, status: :created, location: @Train }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        format.json { render json: @Train.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /tickets/1 or /tickets/1.json
+  # PATCH/PUT /Trains/1 or /Trains/1.json
   def update
     respond_to do |format|
-      if @ticket.update(ticket_params)
-        format.html { redirect_to ticket_url(@ticket), notice: "Ticket was successfully updated." }
-        format.json { render :show, status: :ok, location: @ticket }
+      if @Train.update(Train_params)
+        format.html { redirect_to Train_url(@Train), notice: "Train was successfully updated." }
+        format.json { render :show, status: :ok, location: @Train }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @ticket.errors, status: :unprocessable_entity }
+        format.json { render json: @Train.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /tickets/1 or /tickets/1.json
+  # DELETE /Trains/1 or /Trains/1.json
   def destroy
-    @ticket.destroy
+    @Train.destroy
 
     respond_to do |format|
-      format.html { redirect_to tickets_url, notice: "Ticket was successfully destroyed." }
+      format.html { redirect_to Trains_url, notice: "Train was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_ticket
-      @ticket = Ticket.find(params[:id])
+    def set_Train
+      @Train = Train.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
-    def ticket_params
-      params.require(:ticket).permit(:name, :address, :birthday, :email)
+    def Train_params
+      params.require(:Train).permit(:name, :address, :birthday, :email)
     end
 end
